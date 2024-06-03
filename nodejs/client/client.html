@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+      name="viewport"
+    />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+    <title>Document</title>
+  </head>
+  <body>
+  <button onclick="getInfo()">请求接口</button>
+  <button onclick="getInfo2()">请求接口2</button>
+  </body>
+  <script>
+    const xhrC = (options) => {
+      let xhr = new XMLHttpRequest();
+      xhr.baseURL = options.baseURL || "";
+      xhr.get = (url, params) => {
+        xhr.open("GET",xhr.baseURL+ url + "?" + params, true);
+        xhr.send();
+        return p
+      };
+      xhr.post = (url, body) => {
+        xhr.open("POST",xhr.baseURL+ url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        body = JSON.stringify(body)
+        xhr.send(body);
+        return p
+      };
+      const p = new Promise((s, f) => {
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState == 4) {
+            if (xhr.status == "200" || xhr.status == "304") {
+              s(xhr.responseText)
+              return
+            }
+            f(xhr.responseText)
+          }
+        };
+      });
+      return xhr;
+    };
+    const Xhr = xhrC({
+      baseURL: "http://localhost:3000",
+    });
+    function getInfo(){
+      Xhr.get("/users", "name=123&age=18").then(res=>{
+        console.log(res,47)
+      });
+    }; function getInfo2(){
+      Xhr.post("/users/addUser",{name:'tj',age:22}).then(res=>{
+        console.log(res,47)
+      });
+    };
+  </script>
+</html>

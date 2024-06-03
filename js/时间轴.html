@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      button {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: linear-gradient(to right, #fdf1d8, #b2bcf9);
+      }
+      .line {
+        max-width: 5px;
+        background-color: rgb(177, 187, 249);
+        flex: 1;
+        margin: 0 20px;
+      }
+      .box {
+        display: flex;
+        justify-content: center;
+        height: fit-content;
+      }
+      .left,
+      .right {
+        height: fit-content;
+      }
+      .left1::before,
+      .right1::before {
+        content: "";
+        display: block;
+        width: 15px;
+        position: absolute;
+        height: 15px;
+        transform: rotate(45deg);
+        top: calc(50% - 7px);
+        background-color: white;
+      }
+      .left1::before {
+        right: -5px;
+      }
+      .right1::before {
+        left: -5px;
+      }
+      .act {
+        visibility: visible !important;
+      }
+      .item {
+        background-color: white;
+        position: relative;
+        width: 300px;
+        border-radius: 15px;
+        margin-top: 20px;
+        visibility: hidden;
+      }
+      .left1 .infoDot {
+        right: -27.5px;
+      }
+      .right1 .infoDot {
+        left: -27.5px;
+      }
+      .infoDot {
+        width: 10px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background-color: gray;
+        outline: 2px solid white;
+        position: absolute;
+        top: calc(50% - 5px);
+      }
+      .infoDot:hover {
+        background-color: white;
+      }
+      .infoDot .infoP {
+        width: fit-content;
+        height: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        position: absolute;
+        top: -70px;
+        border-radius: 8px;
+        padding: 10px;
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="addItem()">时间轴</button>
+    <div class="box">
+      <div class="left"></div>
+      <div class="line"></div>
+      <div class="right"></div>
+    </div>
+  </body>
+  <script>
+    const left = document.querySelector(".left");
+    const right = document.querySelector(".right");
+    function addItem() {
+      let a = document.createElement("div");
+      a.classList.add("item");
+      a.style.height = Math.random() > 0.5 ? "100px" : "200px";
+      let isLeft = Math.random() > 0.5;
+      let infoDot = document.createElement("div");
+      infoDot.classList.add("infoDot");
+      let leftEle = a.cloneNode(isLeft);
+      leftEle.classList.add("left1");
+      let rightEle = a.cloneNode(isLeft);
+      rightEle.classList.add("right1");
+      let showEle = isLeft ? leftEle : rightEle;
+      showEle.classList.add("act");
+      showEle.setAttribute("data-text", Math.random());
+      showEle.appendChild(infoDot);
+      let info = document.createElement("p");
+      info.classList.add("infoP");
+      info.innerText = showEle.dataset.text;
+      infoDot.appendChild(info);
+      setTimeout(()=>{
+        info.style.left = "attr(style width)" ;
+      })
+      left.appendChild(leftEle);
+      right.appendChild(rightEle);
+    }
+  </script>
+</html>

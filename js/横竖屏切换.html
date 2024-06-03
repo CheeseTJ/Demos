@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<body>
+<button onclick="changeOrientation('portrait-primary')">竖屏</button>
+<button onclick="changeOrientation('portrait-secondary')">竖屏翻转</button>
+<button onclick="changeOrientation('landscape-primary')">横屏</button>
+<button onclick="changeOrientation('landscape-secondary')">横屏翻转</button>
+</body>
+<script>
+    console.log(navigator.userAgent,1)
+    window.addEventListener("orientationchange", (e)=> {
+        console.log(screen.orientation,15)
+    })
+    const changeOrientation = (orientation)=>{
+        screen.orientation.lock(orientation).then((e)=>{
+            console.log(e,22)
+        })
+    }
+</script>
+</html>

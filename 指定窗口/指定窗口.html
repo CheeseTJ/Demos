@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="openTab(count)">修改已有窗口</button>
+</body>
+<script>
+let count = 1;
+function openTab(val){
+  count++;
+  window.open('file:///D:/代码-TJ/demo/指定窗口/tab.html?id='+count,'指定窗口','width=600,height=200,location=yes,status=yes,toolbar=yes,menubar=yes,top=200,left=200,resizable=yes,scrollbars=yes',true)
+}
+</script>
+</html>

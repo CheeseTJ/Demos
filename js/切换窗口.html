@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<body>
+<button onclick="openTab()">开启窗口</button>
+<button onclick="changeTab(0)">切换窗口1</button>
+<button onclick="changeTab(1)">切换窗口2</button>
+</body>
+<script>
+    let tab0,tab1;
+    function openTab(){
+         // tab0 = window.open('https://www.baidu.com','_blank');
+         tab1 = window.open('https://www.hao123.com','_blank');
+    }
+    function changeTab(which){
+        console.log(tab0,tab1)
+        if(which===0){
+            tab0.focus();
+        }else{
+            tab1.focus();
+        }
+    }
+</script>
+</html>

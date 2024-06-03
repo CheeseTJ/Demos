@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .total {
+        display: flex;
+        align-items: center;
+      }
+      .box {
+        width: 200px;
+        aspect-ratio: 1/1;
+        position: relative;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: -90px;
+      }
+
+      .eye {
+        width: 20px;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        position: absolute;
+        top: 40px;
+        left: 80px;
+        background-color: black;
+        outline: 2px solid white;
+        z-index: 2;
+      }
+
+      .head,
+      .mouth {
+        width: inherit;
+        aspect-ratio: 2/1;
+        background-color: orange;
+        transform-origin: bottom center;
+        animation: open1 1s ease-in-out infinite;
+      }
+
+      .mouth {
+        transform-origin: top center;
+        animation: open2 1s ease-in-out infinite;
+      }
+
+      .sugarBox {
+        overflow: hidden;
+      }
+      .sugarBallBox{
+        display: flex;
+        width: fit-content;
+        gap: 50px;
+        animation: circle 1s ease  infinite ;
+      }
+      
+      .sugarBall {
+        border-radius: 50%;
+        background-color: orange;
+        width: 50px;
+        height: 50px;
+      }
+
+      @keyframes open1 {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        50% {
+          transform: rotate(-40deg);
+        }
+
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+
+      @keyframes open2 {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        50% {
+          transform: rotate(40deg);
+        }
+
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+
+      @keyframes circle {
+        0% {
+          transform: translateX(0px);
+        }
+        /* 25% {
+          transform: translateX(50px);
+        }
+        50% {
+          transform: translateX(50px);
+        }
+        75% {
+          transform: translateX(50px);
+        } */
+        100% {
+          transform: translateX(-100px);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="total">
+      <div class="box">
+        <div class="eye"></div>
+        <div class="head"></div>
+        <div class="mouth"></div>
+      </div>
+      <div class="sugarBox">
+        <div class="sugarBallBox">
+          <div class="sugarBall"></div>
+          <div class="sugarBall"></div>
+          <div class="sugarBall"></div>
+          <div class="sugarBall"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script></script>
+</html>

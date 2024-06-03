@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="openFile()">选择文件</button>
+    <button onclick="openDir()">选择文件夹</button>
+  </body>
+  <script>
+    console.log();
+    // 打开文件夹
+    const openDir = async () => {
+      // FileSystemDirectoryHandle对象
+      // entries 返回所有文件与目录
+      // keys 返回所有文件名称
+      // values 返回所有文件与目录里的文件
+      // getFileHandle 获取目录里的文件 // promise
+      // getDirectoryHandle 获取目录里目录  // promise
+      // removeEntry 删除目录里的文件或目录 // promise
+      // resolve 用于获取目录中的文件或目录 // promise
+      const dirs = await showDirectoryPicker();
+      let files = await getFileInfo(dirs);
+      // console.log(files,27);
+    };
+    // 打开文件 showOpenFilePicker
+    const openFile = async () => {
+      // FileSystemFileHandle对象
+      // getFile获取文件 //promise
+      // createSyncAccessHandle同步访问文件
+      // createWritable创建文件流,写入文件//promise
+      const file = await showOpenFilePicker();
+      getFileInfo(file);
+    };
+    const getFileInfo = async (obj, at = []) => {
+      let arr = at;
+      if (obj.entries) {
+        const dirs = obj.entries();
+        let inx = 0;
+        for await (let dir of dirs) {
+          // if (dir[1].kind == "directory") {
+          //   arr[inx] = {};
+          //   arr[inx].children = [];
+          //   getFileInfo(dir, arr[inx].children);
+          // } else {
+          //   // document.write(at[inx]);
+          //   console.log(123);
+          // }
+          arr[inx] = dir[1];
+          let div =document.createElement('div');
+          div.onclick = getFile(dir[1]);
+          // div.innerText
+          document.write(`<div>${dir[1].name}</div>`)
+          inx++;
+        }
+      }
+      console.log(at)
+      return at;
+    };
+  </script>
+</html>
