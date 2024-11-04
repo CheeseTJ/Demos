@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+       .steps{
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            gap: 40px;
+            position: relative;
+            margin: 200px auto 0;
+            width: fit-content;
+        }
+       .lines{
+           height: 3px;
+           position: absolute;
+           width: 100%;
+           left: 0;
+           top: 50%;
+           transform: translateY(-50%);
+           display: grid;
+           grid-template-columns: repeat(3,1fr);
+           transition: all .5s;
+           z-index: -1;
+       }
+       .line{
+           height: 3px;
+           width: 0;
+           transition: all .5s;
+           background-color: #2498ee;
+       }
+       .line.act{
+           width:100%;
+       }
+       /*.line.act:before{*/
+       /*    content: '';*/
+       /*    display: block;*/
+       /*    width: 100%;*/
+       /*    height: 100%;*/
+       /*    background-color: #2498ee;*/
+       /*}*/
+       .step{
+            width: 25px;
+            height: 25px;
+            border: 3px solid ;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+       }
+       .step.act{
+            border-color: #2498ee;
+            color: #2498ee;
+            background-color: white;
+           transition: all .2s ease-in-out .3s;
+       }
+       .btnS{
+           display: flex;
+           gap: 20px;
+           justify-content: center;
+           align-items: center;
+           margin: 20px auto 0;
+       }
+       .btnS>div{
+           height: 35px;
+           width: 100px;
+           border-radius: 5px;
+           background-color: #2498ee;
+           color: white;
+           line-height: 35px;
+           text-align: center;
+           cursor: pointer;
+           user-select: none;
+           transition: all .3s;
+       }
+       .btnS>div.press{
+           transform: scale(.9);
+       }
+       .btnS>div.disabled{
+           background-color: #e0e0e0;
+           cursor: not-allowed;
+       }
+    </style>
+</head>
+<body>
+<div class="steps">
+    <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <span class="step">1</span>
+    <span class="step">2</span>
+    <span class="step">3</span>
+    <span class="step">4</span>
+</div>
+<div class="btnS">
+    <div class="prev" onmousedown="btnPress(true)" onmouseup="operation(true)" onclick="">上一步</div>
+    <div class="next" onmousedown="btnPress(false)" onmouseup="operation(false)">下一步</div>
+</div>
+</body>
+<script>
+    const step = document.querySelectorAll('.step');
+    const lines = document.querySelectorAll('.line');
+    const prev = document.querySelector('.prev');
+    const next = document.querySelector('.next');
+    let index = 2; //起始位置
+    const calcPos = ()=>{
+        prev.classList[index<=0?'add':'remove']('disabled');
+        next.classList[index>=step.length-1?'add':'remove']('disabled');
+        step.forEach((i, inx) => i.classList[inx<=index?'add':'remove']('act'))
+        lines.forEach((i, inx) => i.classList[inx+1<=index?'add':'remove']('act'))
+    }
+    calcPos()
+    const btnPress = (isPrev) => {
+        (isPrev?prev:next).classList.add('press');
+    }
+    const operation = (isPrev) => {
+        (isPrev?prev:next).classList.remove('press');
+        if (isPrev && index <= 0) return
+        if (!isPrev && index >= step.length - 1) return;
+        isPrev? index-- : index++;
+        calcPos()
+    }
+</script>
+</html>

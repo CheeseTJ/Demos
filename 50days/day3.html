@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+       .container{
+            display: flex;
+            height: 100vh;
+        }
+       .left,.right{
+           flex:1;
+           transition: all 1s;
+           background-size: cover;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           flex-direction: column;
+           gap: 50px;
+       }
+       p{
+           color: white;
+           font-size: 50px;
+           font-weight: bold;
+       }
+       button{
+           background-color: transparent;
+           border: 5px solid white;
+           color: white;
+           width: 200px;
+           height: 70px;
+           border-radius: 0;
+       }
+       .left{
+           background: url('https://50projects50days.com/projects/split-landing-page/ps.jpg') left center;
+       }
+       .right{
+           background: url("https://50projects50days.com/projects/split-landing-page/xbox.jpg") right center;
+       }
+       .left:hover,
+       .right:hover{
+           flex: 3;
+       }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="left">
+        <p>Playstation 5</p>
+        <button>BUY NOW</button>
+    </div>
+    <div class="right">
+        <p>XBox Series X</p>
+        <button>BUY NOW</button>
+    </div>
+</div>
+</body>
+
+</html>

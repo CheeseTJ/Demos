@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>根据颜色匹配不同的字体颜色</title>
+    <style>
+        .text {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+        .text p {
+            color:white;
+            mix-blend-mode: difference;
+        }
+        #color{
+                border: 0;
+                height: 0;
+                width: 0;
+                overflow: hidden;
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div onclick="openPicker()">取色盘</div>
+<input type="color" onchange="changeColor2()" id="color" height="0">
+
+<div class="text" onclick="changeColor()">
+    <p>
+        这是一个示例文本
+    </p>
+</div>
+<div class="test"></div>
+</body>
+<script>
+    let text = document.querySelector('.text');
+    let color = document.querySelector('#color');
+    let test = document.querySelector('.test')
+    async function changeColor(e) {
+        let picker = new EyeDropper();
+        const result = await picker.open();
+        text.style.backgroundColor=result.sRGBHex;
+        console.log(result,30)
+    }
+    function changeColor2() {
+        text.style.backgroundColor=color.value;
+        color.style.display='none';
+        test.click();
+        color.remove();你
+    }
+    function openPicker() {
+        document.body.appendChild(color)
+        color.click();
+    }
+</script>
+</html>

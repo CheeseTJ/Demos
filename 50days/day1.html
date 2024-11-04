@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            display: flex;
+            gap: 20px;
+            width: 100vw;
+        }
+        .box>img{
+            border: 1px solid red;
+            border-radius: 100px;
+            transition: all 1s;
+            height: 100vh;
+            object-fit: cover;
+            object-position: center;
+            flex: 1;
+            width: 1px;
+        }
+        img.act{
+            flex: 6;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <img src="https://api.paugram.com/wallpaper/"/>
+    <img src="https://api.paugram.com/wallpaper/"/>
+    <img src="https://api.paugram.com/wallpaper/"/>
+    <img src="https://api.paugram.com/wallpaper/"/>
+    <img src="https://api.paugram.com/wallpaper/"/>
+    <img src="https://api.paugram.com/wallpaper/"/>
+    <img src="https://api.paugram.com/wallpaper/"/>
+</div>
+</body>
+<script>
+    let imgs = document.querySelectorAll('img');
+    imgs.forEach(item=>{
+        item.onclick = ()=>{
+            [].filter.call(imgs,i => i!==item).forEach(j=>j.classList.remove('act'));
+            item.classList.add('act');
+        }
+    })
+</script>
+</html>
